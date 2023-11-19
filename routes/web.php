@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +65,25 @@ Route::prefix("training")->group(function () {
         return "Welcome, You Are In Logistics Page.";
     });
 });
+
+// Route::fallback(function () {
+//     return redirect("/");
+// });
+
+// Route::get("cv", function () {
+//     return view("cv");
+// });
+
+// Route::get("login", function () {
+//     return view("login");
+// });
+
+// Route::post("recieve", function () {
+//     return "Recieved Data";
+// })->name("recieve");
+
+// Route::get("test1",[ExampleController::class, "test1"]);
+
+Route::get("addCarForm",[ExampleController::class, "addCarForm"]);
+
+Route::post("carInfo",[ExampleController::class, "showCarInfo"])->name("carInfo");
