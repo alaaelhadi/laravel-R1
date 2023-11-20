@@ -28,4 +28,5 @@ class ExampleController extends Controller
             echo "This car is not published.";
         }
     }
+    
 }
