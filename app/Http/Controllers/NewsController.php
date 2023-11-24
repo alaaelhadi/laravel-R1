@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Models\News;
 
 class NewsController extends Controller
@@ -12,7 +13,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $showNews = News::get();
+        return view('news', compact('showNews'));
     }
 
     /**
@@ -56,7 +58,8 @@ class NewsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $news = News::findOrFail($id);
+        return view('updateNews', compact('news'));
     }
 
     /**

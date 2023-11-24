@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewsController;
-// use App\Models\News;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +19,33 @@ use App\Http\Controllers\NewsController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get("test", function () {
+//     return "Welcome to my first route";
+// });
+
+// Route::get("user/{name}/{age?}", function ($name, $age=NULL){
+//     $msg = "Hello " . $name;
+//     if(isset($age)){
+//         $msg .=  " your age is " . $age;
+//     }
+//     return $msg;
+// })->where(["name" => "[a-zA-Z0-9]+", "age" => "[0-9]+"]); //whereNumber(["age"]) //whereAlpha(["name"]) //whereIn("name" ,["Alaa", "Mohamed"])
+
+// Route::prefix("product")->group(function () {
+//     Route::get("/", function () {
+//         return "Welcome, you are in product page";
+//     });
+//     Route::get("laptop", function () {
+//         return "Welcome, you are in laptop page";
+//     });
+//     Route::get("camera", function () {
+//         return "Welcome, you are in camera page";
+//     });
+//     Route::get("projector", function () {
+//         return "Welcome, you are in projector page";
+//     });
+// });
 
 // Route::get("about", function () {
 //     return "Welcome, You Are In About Page.";
@@ -100,3 +126,15 @@ Route::get('/', function () {
 Route::get("addNews",[NewsController::class, "create"]);
 
 Route::post("newsInfo",[NewsController::class, "store"])->name("newsInfo");
+
+// Route::get("cars",[CarController::class, "index"]);
+
+// Route::get('editCar/{id}',[CarController::class, 'edit']);
+
+// Route::put('updateCar/{id}',[CarController::class, 'update'])->name('updateCar');
+
+Route::get('news',[NewsController::class, 'index']);
+
+Route::get('editNews/{id}',[NewsController::class, 'edit']);
+
+Route::put('updateNews/{id}',[NewsController::class, 'update'])->name('updateNews');
