@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add News</title>
+    <title>Add Posts</title>
 </head>
 <body>
     <div class="formbold-main-wrapper">
     <!-- Author: FormBold Team -->
     <!-- Learn More: https://formbold.com -->
     <div class="formbold-form-wrapper">
-        <h2>Add News</h2>
-        <form action="{{ route('newsInfo') }}" method="POST">
-            @csrf
+        <h2>Add Posts</h2>
+        <form action="{{ route('showPosts') }}" method="POST">
+        @csrf
         <div class="formbold-mb-5">
             <label for="title" class="formbold-form-label"> Title </label>
             <input
@@ -26,16 +26,6 @@
         <div class="formbold-mb-5">
             <label for="content" class="formbold-form-label"> Content </label>
             <textarea class="formbold-form-input" placeholder="Content" rows="5" id="phone" name="content"></textarea>
-        </div>
-        <div class="formbold-mb-5">
-            <label for="author" class="formbold-form-label"> Author </label>
-            <input
-            type="text"
-            name="auther"
-            id="email"
-            placeholder="Author name"
-            class="formbold-form-input"
-            />
         </div>
         <div class="formbold-mb-5">
         <label><input type="checkbox" name="published"> Published</label>

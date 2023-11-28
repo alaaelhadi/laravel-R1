@@ -9,6 +9,8 @@ use App\Models\Car;
 
 class CarController extends Controller
 {
+    private $columns = ['carTitle', 'description','published'];
+
     /**
      * Display a listing of the resource.
      */
@@ -23,7 +25,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('addCar');
     }
 
     /**
@@ -31,18 +33,20 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $cars = new Car;
-        $cars->carTitle = $request->title;
-        $cars->description = $request->description;
-        if(isset($request->remember)){
-            $cars->published = true;
-        }else{
-            $cars->published = false;
-        }
-        
-        $cars->save();
-        return "Car Data Added Successfully";
+        $data = $request->only($this->columns);
+        $data['published'] = isset($data['published'])? true : false;
+        Car::create($data);        
+        return redirect('cars');
+        // $cars = new Car;
+        // $cars->carTitle = $request->carTitle;
+        // $cars->description = $request->description;
+        // if(isset($request->remember)){
+        //     $cars->published = true;
+        // }else{
+        //     $cars->published = false;
+        // }
+        // $cars->save();
+        // return "Car Data Added Successfully";
     }
 
     /**
@@ -50,7 +54,8 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        return view('carDetail', compact('car'));
     }
 
     /**
@@ -67,7 +72,10 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->only($this->columns);
+        $data['published'] = isset($data['published'])? true : false;
+        Car::where('id', $id)->update($data);        
+        return redirect('cars');
     }
 
     /**
@@ -75,6 +83,7 @@ class CarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Car::where('id', $id)->delete();        
+        return redirect('cars');
     }
 }

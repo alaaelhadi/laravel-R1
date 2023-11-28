@@ -4,20 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Models\News;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\Post;
 
-class NewsController extends Controller
+class PostController extends Controller
 {
-    private $columns = ['title', 'content', 'published', 'auther'];
-
+    private $postColumns = ['title', 'content', 'published'];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $showNews = News::get();
-        return view('news', compact('showNews'));
+        $posts = Post::get();
+        return view('posts', compact('posts'));
     }
 
     /**
@@ -25,7 +23,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('addNews');
+        return view('addPosts');
     }
 
     /**
@@ -33,11 +31,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only($this->columns);
+        $data = $request->only($this->postColumns);
         $data['published'] = isset($data['published'])? true : false;
-        News::create($data);        
-        return redirect('news');
-        //return dd($request);
+        Post::create($data);
+        return redirect('posts');
     }
 
     /**
@@ -45,8 +42,8 @@ class NewsController extends Controller
      */
     public function show(string $id)
     {
-        $news = News::findOrFail($id);
-        return view('newsDetail', compact('news'));
+        $post = Post::findOrFail($id);
+        return view('postDetail', compact('post'));
     }
 
     /**
@@ -54,8 +51,8 @@ class NewsController extends Controller
      */
     public function edit(string $id)
     {
-        $news = News::findOrFail($id);
-        return view('updateNews', compact('news'));
+        $post = Post::findOrFail($id);
+        return view('updatePost', compact('post'));
     }
 
     /**
@@ -63,10 +60,10 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->only($this->columns);
+        $data = $request->only($this->postColumns);
         $data['published'] = isset($data['published'])? true : false;
-        News::where('id', $id)->update($data);        
-        return redirect('news');
+        Post::where('id', $id)->update($data);
+        return redirect('posts');
     }
 
     /**
@@ -74,7 +71,7 @@ class NewsController extends Controller
      */
     public function destroy(string $id)
     {
-        News::where('id', $id)->delete();        
-        return redirect('news');
+        Post::where('id', $id)->delete();        
+        return redirect('posts');
     }
 }

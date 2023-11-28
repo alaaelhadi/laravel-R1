@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,22 +120,47 @@ Route::get('/', function () {
 
 // Route::get("addcar",[CarController::class, "store"])->name("carInfo");
 
-// Route::get("addcar",[CarController::class, "store"]);
+// Cars section
+Route::get("addcar",[CarController::class, "create"]);
 
-// Route::post("carInfo",[CarController::class, "store"])->name("carInfo");
+Route::post("carInfo",[CarController::class, "store"])->name("carInfo");
 
+Route::get("cars",[CarController::class, "index"]);
+
+Route::get('editCar/{id}',[CarController::class, 'edit']);
+
+Route::put('updateCar/{id}',[CarController::class, 'update'])->name('updateCar');
+
+Route::get('carDetail/{id}',[CarController::class, 'show']);
+
+Route::get('deleteCar/{id}',[CarController::class, 'destroy']);
+
+// News section
 Route::get("addNews",[NewsController::class, "create"]);
 
 Route::post("newsInfo",[NewsController::class, "store"])->name("newsInfo");
-
-// Route::get("cars",[CarController::class, "index"]);
-
-// Route::get('editCar/{id}',[CarController::class, 'edit']);
-
-// Route::put('updateCar/{id}',[CarController::class, 'update'])->name('updateCar');
 
 Route::get('news',[NewsController::class, 'index']);
 
 Route::get('editNews/{id}',[NewsController::class, 'edit']);
 
 Route::put('updateNews/{id}',[NewsController::class, 'update'])->name('updateNews');
+
+Route::get('newsDetail/{id}',[NewsController::class, 'show']);
+
+Route::get('deleteNews/{id}',[NewsController::class, 'destroy']);
+
+// Posts section
+// Route::get('addposts',[PostController::class, 'create']);
+
+// Route::post('showposts',[PostController::class, 'store'])->name('showPosts');
+
+// Route::get('posts',[PostController::class, 'index']);
+
+// Route::get('postDetail/{id}',[PostController::class, 'show']);
+
+// Route::get('editPost/{id}',[PostController::class, 'edit']);
+
+// Route::put('updatePost/{id}',[PostController::class, 'update'])->name('updatePost');
+
+// Route::get('deletePost/{id}',[PostController::class, 'destroy']);

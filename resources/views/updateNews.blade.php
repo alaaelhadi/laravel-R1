@@ -33,7 +33,7 @@
             <label for="author" class="formbold-form-label"> Author </label>
             <input
             type="text"
-            name="author"
+            name="auther"
             value="{{ $news->auther }}"
             id="email"
             placeholder="Author name"
