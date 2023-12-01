@@ -31,8 +31,13 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
+        $request->validate([
+            'title'=>'required|string',
+            'content'=>'required|string|max:1000',
+            'auther'=>'required|string'
+        ]);
         $data = $request->only($this->columns);
         $data['published'] = isset($data['published'])? true : false;
         News::create($data);        
@@ -61,7 +66,7 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $data = $request->only($this->columns);
         $data['published'] = isset($data['published'])? true : false;
@@ -72,9 +77,27 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         News::where('id', $id)->delete();        
         return redirect('news');
+    }
+
+    public function trashedNews()
+    {
+        $trashednews = News::onlyTrashed()->get();        
+        return view('trashedNews', compact('trashednews'));
+    }
+
+    public function restoreNews(string $id): RedirectResponse
+    {
+        News::where('id', $id)->restore();        
+        return redirect('news');
+    }
+
+    public function finalDeleteOfNews(string $id): RedirectResponse
+    {
+        News::where('id', $id)->forceDelete();        
+        return redirect('trashedNews');
     }
 }

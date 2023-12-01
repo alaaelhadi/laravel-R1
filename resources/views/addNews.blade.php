@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add News</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="formbold-main-wrapper">
@@ -19,23 +22,40 @@
             type="text"
             name="title"
             id="name"
+            value="{{ old('title') }}"
             placeholder="Title"
             class="formbold-form-input"
             />
+            @error('title')
+            <div class='alert alert-warning'>
+              {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="formbold-mb-5">
             <label for="content" class="formbold-form-label"> Content </label>
-            <textarea class="formbold-form-input" placeholder="Content" rows="5" id="phone" name="content"></textarea>
+            <textarea class="formbold-form-input" placeholder="Content" rows="5" id="phone" name="content">{{ old('content') }}</textarea>
+            @error('content')
+            <div class='alert alert-warning'>
+              {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="formbold-mb-5">
             <label for="author" class="formbold-form-label"> Author </label>
             <input
             type="text"
             name="auther"
+            value="{{ old('auther') }}"
             id="email"
             placeholder="Author name"
             class="formbold-form-input"
             />
+            @error('auther')
+            <div class='alert alert-warning'>
+              {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="formbold-mb-5">
         <label><input type="checkbox" name="published"> Published</label>

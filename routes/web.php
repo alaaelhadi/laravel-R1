@@ -135,6 +135,12 @@ Route::get('carDetail/{id}',[CarController::class, 'show']);
 
 Route::get('deleteCar/{id}',[CarController::class, 'destroy']);
 
+Route::get('trashed',[CarController::class, 'trashed']);
+
+Route::get('restoreCar/{id}',[CarController::class, 'restore']);
+
+Route::get('finalDelete/{id}',[CarController::class, 'delete']);
+
 // News section
 Route::get("addNews",[NewsController::class, "create"]);
 
@@ -150,6 +156,12 @@ Route::get('newsDetail/{id}',[NewsController::class, 'show']);
 
 Route::get('deleteNews/{id}',[NewsController::class, 'destroy']);
 
+Route::get('trashedNews',[NewsController::class, 'trashedNews']);
+
+Route::get('restoreNews/{id}',[NewsController::class, 'restoreNews']);
+
+Route::get('finalDeleteOfNews/{id}',[NewsController::class, 'finalDeleteOfNews']);
+
 // Posts section
 // Route::get('addposts',[PostController::class, 'create']);
 
@@ -164,3 +176,9 @@ Route::get('deleteNews/{id}',[NewsController::class, 'destroy']);
 // Route::put('updatePost/{id}',[PostController::class, 'update'])->name('updatePost');
 
 // Route::get('deletePost/{id}',[PostController::class, 'destroy']);
+
+// Route::get('trashedPosts',[PostController::class, 'trashedPosts']);
+
+// Route::get('restorePost/{id}',[PostController::class, 'restorePost']);
+
+// Route::get('finalDeletePost/{id}',[PostController::class, 'finalDeletePost']);
