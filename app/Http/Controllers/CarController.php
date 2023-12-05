@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Car;
 use Illuminate\Support\Facades\Redirect;
+use App\Traits\Common;
 
 class CarController extends Controller
 {
+    use Common;
     private $columns = ['carTitle', 'description','published'];
 
     /**
@@ -34,12 +36,21 @@ class CarController extends Controller
      */
     public function store(Request $request): RedirectResponse
     { 
-        $request->validate([
+        $messages=[
+            'carTitle.required'=>'العنوان مطلوب',
+            'description.required'=> 'يجب ان يكون نص',
+            'image.required'=> 'يجب إدخال صورة'
+        ];
+            
+        $data = $request->validate([
             'carTitle'=>'required|string',
-            'description'=>'required|string|max:100'
-        ]);  
-        $data = $request->only($this->columns);
-        $data['published'] = isset($data['published'])? true : false;
+            'description'=>'required|string|max:100',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048'
+        ], $messages);  
+        $fileName = $this->uploadFile($request->image, 'assets/images');
+        $data['image'] = $fileName;
+        // $data['published'] = isset($request['published'])? true : false;
+        $data['published'] = isset($request['published']); //دا كود أحسن  
         Car::create($data);        
         return redirect('cars');
         // $cars = new Car;
@@ -77,10 +88,45 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
+        $messages=[
+            'carTitle.required'=>'العنوان مطلوب',
+            'description.required'=> 'يجب ان يكون نص',
+            'image.required'=> 'يجب إدخال صورة',
+            'image.mimes'=> 'Extension must be png or jpg or jpeg'
+        ];
+            
+        $data = $request->validate([
+            'carTitle'=>'required|string',
+            'description'=>'required|string|max:100',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048'
+        ], $messages);
         $data = $request->only($this->columns);
         $data['published'] = isset($data['published'])? true : false;
         Car::where('id', $id)->update($data);        
+        
+       
+        $cars = Car::find($id);
+        $cars->carTitle = $request->get('carTitle');
+        $cars->description = $request->get('description');
+        if ($request->hasFile('image')) {
+            
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('assets/images'), $imageName);
+            $cars->image = $imageName;
+        }
+        $cars->save();
         return redirect('cars');
+
+    // $data = Car::find($id);
+    
+    // $fileName = $this->uploadFile($request->image, 'assets/images');
+    // $data['image'] = $fileName;
+    
+    
+    // $data = $request->only($this->columns);
+    // $data['published'] = isset($data['published'])? true : false;
+    // Car::where('id', $id)->update($data);        
+    // return redirect('cars');
     }
 
     /**

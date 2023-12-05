@@ -142,25 +142,25 @@ Route::get('restoreCar/{id}',[CarController::class, 'restore']);
 Route::get('finalDelete/{id}',[CarController::class, 'delete']);
 
 // News section
-Route::get("addNews",[NewsController::class, "create"]);
+// Route::get("addNews",[NewsController::class, "create"]);
 
-Route::post("newsInfo",[NewsController::class, "store"])->name("newsInfo");
+// Route::post("newsInfo",[NewsController::class, "store"])->name("newsInfo");
 
-Route::get('news',[NewsController::class, 'index']);
+// Route::get('news',[NewsController::class, 'index']);
 
-Route::get('editNews/{id}',[NewsController::class, 'edit']);
+// Route::get('editNews/{id}',[NewsController::class, 'edit']);
 
-Route::put('updateNews/{id}',[NewsController::class, 'update'])->name('updateNews');
+// Route::put('updateNews/{id}',[NewsController::class, 'update'])->name('updateNews');
 
-Route::get('newsDetail/{id}',[NewsController::class, 'show']);
+// Route::get('newsDetail/{id}',[NewsController::class, 'show']);
 
-Route::get('deleteNews/{id}',[NewsController::class, 'destroy']);
+// Route::get('deleteNews/{id}',[NewsController::class, 'destroy']);
 
-Route::get('trashedNews',[NewsController::class, 'trashedNews']);
+// Route::get('trashedNews',[NewsController::class, 'trashedNews']);
 
-Route::get('restoreNews/{id}',[NewsController::class, 'restoreNews']);
+// Route::get('restoreNews/{id}',[NewsController::class, 'restoreNews']);
 
-Route::get('finalDeleteOfNews/{id}',[NewsController::class, 'finalDeleteOfNews']);
+// Route::get('finalDeleteOfNews/{id}',[NewsController::class, 'finalDeleteOfNews']);
 
 // Posts section
 // Route::get('addposts',[PostController::class, 'create']);
@@ -182,3 +182,8 @@ Route::get('finalDeleteOfNews/{id}',[NewsController::class, 'finalDeleteOfNews']
 // Route::get('restorePost/{id}',[PostController::class, 'restorePost']);
 
 // Route::get('finalDeletePost/{id}',[PostController::class, 'finalDeletePost']);
+
+// Uploading Files
+Route::get("showUpload",[ExampleController::class, "showUpload"]);
+
+Route::post("upload",[ExampleController::class, "upload"])->name('upload');
