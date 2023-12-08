@@ -87,6 +87,7 @@ class PlaceController extends Controller
             'description.required'=> 'يجب ان يكون نص',
             'priceFrom.required'=>'الحد الادني من السعر مطلوب',
             'priceTo.required'=> 'الحد الاقصى من السعر مطلوب',
+            'image.required'=> 'الصورة مطلوبة',
             'image.mimes'=> 'Extension must be png or jpg or jpeg'
         ];
     }
