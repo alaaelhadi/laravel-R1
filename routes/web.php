@@ -5,6 +5,8 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PlaceController;
+use App\Models\Place;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +122,10 @@ Route::get('/', function () {
 
 // Route::get("addcar",[CarController::class, "store"])->name("carInfo");
 
+Route::get("place",[ExampleController::class, "place"]);
+
+Route::get("blog",[ExampleController::class, "blog"]);
+
 // Cars section
 Route::get("addcar",[CarController::class, "create"]);
 
@@ -187,3 +193,12 @@ Route::get('finalDelete/{id}',[CarController::class, 'delete']);
 Route::get("showUpload",[ExampleController::class, "showUpload"]);
 
 Route::post("upload",[ExampleController::class, "upload"])->name('upload');
+
+// Places section
+Route::get("addPlaces",[PlaceController::class, "create"]);
+
+Route::post('showPlaces',[PlaceController::class, 'store'])->name('showPlaces');
+
+Route::get("placesList",[PlaceController::class, "index"]);
+
+Route::get("place",[PlaceController::class, "placeMainPage"]);
