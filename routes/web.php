@@ -202,3 +202,11 @@ Route::post('showPlaces',[PlaceController::class, 'store'])->name('showPlaces');
 Route::get("placesList",[PlaceController::class, "index"]);
 
 Route::get("place",[PlaceController::class, "placeMainPage"]);
+
+Route::get('placeDetail/{id}',[PlaceController::class, 'show']);
+
+Route::get('editPlace/{id}',[PlaceController::class, 'edit']);
+
+Route::put('updatePlace/{id}',[PlaceController::class, 'update'])->name('updatePlace');
+
+Route::get('deletePlace/{id}',[PlaceController::class, 'destroy']);

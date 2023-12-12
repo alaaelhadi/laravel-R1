@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('priceTo');
             $table->string("image", 100);
             $table->boolean("published");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Place;
 use App\Traits\Common;
+use Illuminate\Support\Facades\Redirect;
 
 class PlaceController extends Controller
 {
@@ -53,7 +54,8 @@ class PlaceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $place = Place::findOrFail($id);
+        return view('placeDetail', compact('place'));
     }
 
     /**
@@ -61,7 +63,8 @@ class PlaceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $place = Place::findOrFail($id);
+        return view('updatePlace', compact('place'));
     }
 
     /**
@@ -69,15 +72,32 @@ class PlaceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = $this->messages();
+        $data = $request->validate([
+            'title'=>'required|string',
+            'description'=>'required|string|max:100',
+            'priceFrom'=>'required|numeric',
+            'priceTo'=>'required|numeric',
+            'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048'
+        ], $messages);
+
+        // Update image if new file selected
+        if ($request->hasFile('image')) {
+            $fileName = $this->uploadFile($request->image, 'assets/images');
+            $data['image'] = $fileName;
+        }
+        $data['published'] = isset($request['published']);
+        Place::where('id', $id)->update($data);
+        return redirect('placesList');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        Place::where('id', $id)->delete();
+        return redirect('placesList');
     }
 
     public function messages()

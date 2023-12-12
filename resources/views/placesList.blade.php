@@ -20,6 +20,7 @@
         <th>Price From</th>
         <th>Price To</th>
         <th>Image</th>
+        <th>Created at</th>
         <th>Published</th>
         <th>Edit</th>
         <th>Show</th>
@@ -34,6 +35,7 @@
         <td>{{ $place->priceFrom }}$</td>
         <td>{{ $place->priceTo }}$</td>
         <td><img src="assets/images/{{ $place->image }}" width="100px"></td>
+        <td>{{ $place->created_at }}$</td>
         <td>
             @if($place->published)
                 Yes ✔
@@ -41,9 +43,9 @@
                 No ❌
             @endif
         </td>
-        <td><a href="editCar/{{ $place->id }}">Edit</a></td>
-        <td><a href="carDetail/{{ $place->id }}">Show</a></td>
-        <td><a href="deleteCar/{{ $place->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+        <td><a href="editPlace/{{ $place->id }}">Edit</a></td>
+        <td><a href="placeDetail/{{ $place->id }}">Show</a></td>
+        <td><a href="deletePlace/{{ $place->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
       </tr>
       @endforeach
     </tbody>
