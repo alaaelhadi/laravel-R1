@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Car;
+use App\Models\Category;
 use App\Models\Place;
 
 class DatabaseSeeder extends Seeder

@@ -10,6 +10,8 @@
     <br>
     Car description: {{ $car->description }}
     <br>
+    Car category: {{ $car->category->categoryName }}
+    <br>
     @if($car->published)
     It is published.
     @else

@@ -20,6 +20,7 @@
         <th>Content</th>
         <th>Published</th>
         <th>Image</th>
+        <th>Category</th>
         <th>Edit</th>
         <th>Show</th>
         <th>Delete</th>
@@ -38,6 +39,7 @@
             @endif
         </td>
         <td><img src="assets/images/{{ $car->image }}" width="120px"></td>
+        <td>{{ $car->category->categoryName }}</td>
         <td><a href="editCar/{{ $car->id }}">Edit</a></td>
         <td><a href="carDetail/{{ $car->id }}">Show</a></td>
         <td><a href="deleteCar/{{ $car->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>

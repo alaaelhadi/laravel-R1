@@ -13,6 +13,11 @@ class Car extends Model
         'carTitle',
         'description',
         'published',
-        'image'
+        'image', 
+        'category_id'
         ];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }

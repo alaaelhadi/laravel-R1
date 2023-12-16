@@ -50,6 +50,20 @@
         </div>
       @enderror
     </div>
+    <div class="form-group">
+      <label for="image">Category:</label>
+        <select name="category_id">
+          <option value=""> Select Category </option>
+          @foreach($categories as $category)
+          <option value="{{ $category->id }}"> {{$category->categoryName}} </option>
+          @endforeach
+        </select>
+      @error('category_id')
+        <div class='alert alert-warning'>
+          {{ $message }}
+        </div>
+      @enderror
+    </div>
     <button type="submit" class="btn btn-default">Add</button>
   </form>
 </div>
