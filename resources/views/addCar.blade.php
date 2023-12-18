@@ -51,7 +51,7 @@
       @enderror
     </div>
     <div class="form-group">
-      <label for="image">Category:</label>
+      <label for="Category">Category:</label>
         <select name="category_id">
           <option value=""> Select Category </option>
           @foreach($categories as $category)

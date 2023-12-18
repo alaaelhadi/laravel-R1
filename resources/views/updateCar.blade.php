@@ -53,10 +53,10 @@
       @enderror
     </div>
     <div class="form-group">
-      <label for="image">Category:</label>
+      <label for="Category">Category:</label>
         <select name="category_id">
           @foreach($categories as $category)
-          <option value="{{ $category->id }}" @if($category->id==$car->category_id) selected='selected' @endif> {{$category->categoryName}} </option>
+          <option value="{{ $category->id }}" @selected($category->id == $car->category_id)> {{$category->categoryName}} </option>
           @endforeach
         </select>
       @error('category_id')

@@ -6,6 +6,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\HomeController;
 use App\Models\Place;
 
 /*
@@ -210,3 +211,11 @@ Route::get('editPlace/{id}',[PlaceController::class, 'edit']);
 Route::put('updatePlace/{id}',[PlaceController::class, 'update'])->name('updatePlace');
 
 Route::get('deletePlace/{id}',[PlaceController::class, 'destroy']);
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('contact', [HomeController::class, 'showContact']);
+
+Route::post('contact', [HomeController::class, 'contact_mail'])->name('contact');
