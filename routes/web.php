@@ -127,12 +127,14 @@ Route::get("place",[ExampleController::class, "place"]);
 
 Route::get("blog",[ExampleController::class, "blog"]);
 
+Route::get("session",[ExampleController::class, "mySession"]);
+
 // Cars section
 Route::get("addcar",[CarController::class, "create"]);
 
 Route::post("carInfo",[CarController::class, "store"])->name("carInfo");
 
-Route::get("cars",[CarController::class, "index"]);
+Route::get("cars",[CarController::class, "index"])->middleware('verified');
 
 Route::get('editCar/{id}',[CarController::class, 'edit']);
 
@@ -216,6 +218,14 @@ Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('contact', [HomeController::class, 'showContact']);
 
-Route::post('contact', [HomeController::class, 'contact_mail'])->name('contact');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ 
+
+        Route::get('contact', [HomeController::class, 'showContact']);
+        Route::post('contact', [HomeController::class, 'contact_mail'])->name('contact');
+
+    });

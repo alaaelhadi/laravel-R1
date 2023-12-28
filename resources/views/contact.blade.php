@@ -12,6 +12,10 @@
   </head>
   <body>
     <div class="container">
+      <div>
+          <a href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a>
+          <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">Arabic</a>
+      </div>
       <span class="big-circle"></span>
       <img src="img/shape.png" class="square" alt="" />
       <div class="form">
@@ -62,7 +66,7 @@
 
           <form action="{{ route('contact') }}" method="post" autocomplete="on">
             @csrf
-            <h3 class="title">Contact us</h3>
+            <h3 class="title">{{ __('messages.contactForm') }}</h3>
             <div class="input-container">
               <input type="text" name="name" class="input" placeholder="Username"/>
               <!-- <label for="">Username</label>
