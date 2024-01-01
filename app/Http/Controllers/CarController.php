@@ -137,10 +137,11 @@ class CarController extends Controller
     public function messages()
     {
         return [
-            'carTitle.required'=>'العنوان مطلوب',
-            'description.required'=> 'يجب ان يكون نص',
-            'image.mimes'=> 'Extension must be png or jpg or jpeg',
-            'category_id.required'=> 'يجب اختيار تصنيف'
+            'carTitle.required' => __('messages.carTitleValidate'),
+            'description.required' => __('messages.descriptionValidate'),
+            'image.required' => __('messages.imageValidate'),
+            'image.mimes' => __('messages.imageExtentionValidate'),
+            'category_id.required' => __('messages.categoryValidate')
         ];
     }
 }

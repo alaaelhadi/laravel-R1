@@ -130,7 +130,7 @@ Route::get("blog",[ExampleController::class, "blog"]);
 Route::get("session",[ExampleController::class, "mySession"]);
 
 // Cars section
-Route::get("addcar",[CarController::class, "create"]);
+// Route::get("addcar",[CarController::class, "create"]);
 
 Route::post("carInfo",[CarController::class, "store"])->name("carInfo");
 
@@ -225,6 +225,7 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ 
 
+        Route::get("addcar",[CarController::class, "create"]);
         Route::get('contact', [HomeController::class, 'showContact']);
         Route::post('contact', [HomeController::class, 'contact_mail'])->name('contact');
 
